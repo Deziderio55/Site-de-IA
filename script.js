@@ -20,7 +20,47 @@ function renderProducts() {
   let visible = products.filter(product => selectedFilter === 'todos' || product.category === selectedFilter).filter(product => `${product.name} ${product.category} ${product.detail}`.toLowerCase().includes(query));
   if (sort === 'low') visible.sort((a, b) => a.price - b.price);
   if (sort === 'high') visible.sort((a, b) => b.price - a.price);
-  grid.innerHTML = visible.length ? visible.map(product => `<article class="product-card"><div class="product-visual"><img src="${product.image}" alt="${product.name}" loading="lazy"><span class="product-tag">${product.label}</span><button class="quick-add" data-add="${product.id}" aria-label="Adicionar ${product.name} ao carrinho">+</button></div><div class="product-info"><div><h3>${product.name}</h3><p>${product.detail}</p></div><span class="price">${formatPrice(product.price)}</span></div></article>`).join('') : '<p class="cart-empty">Nenhum par encontrado.</p>';
+  grid.replaceChildren();
+  if (!visible.length) {
+    const emptyMessage = document.createElement('p');
+    emptyMessage.className = 'cart-empty';
+    emptyMessage.textContent = 'Nenhum par encontrado.';
+    grid.append(emptyMessage);
+    return;
+  }
+  visible.forEach(product => {
+    const card = document.createElement('article');
+    card.className = 'product-card';
+    const visual = document.createElement('div');
+    visual.className = 'product-visual';
+    const image = document.createElement('img');
+    image.src = product.image;
+    image.alt = product.name;
+    image.loading = 'lazy';
+    const tag = document.createElement('span');
+    tag.className = 'product-tag';
+    tag.textContent = product.label;
+    const addButton = document.createElement('button');
+    addButton.className = 'quick-add';
+    addButton.dataset.add = product.id;
+    addButton.setAttribute('aria-label', `Adicionar ${product.name} ao carrinho`);
+    addButton.textContent = '+';
+    visual.append(image, tag, addButton);
+    const info = document.createElement('div');
+    info.className = 'product-info';
+    const details = document.createElement('div');
+    const name = document.createElement('h3');
+    name.textContent = product.name;
+    const description = document.createElement('p');
+    description.textContent = product.detail;
+    details.append(name, description);
+    const price = document.createElement('span');
+    price.className = 'price';
+    price.textContent = formatPrice(product.price);
+    info.append(details, price);
+    card.append(visual, info);
+    grid.append(card);
+  });
 }
 
 function renderCart() {
@@ -29,7 +69,23 @@ function renderCart() {
   document.querySelector('.drawer-count').textContent = `(${count})`;
   document.querySelector('.cart-total').textContent = formatPrice(cart.reduce((total, item) => total + item.price * item.quantity, 0));
   document.querySelector('.cart-empty').classList.toggle('hidden', cart.length > 0);
-  document.querySelector('.cart-items').innerHTML = cart.map(item => `<div class="cart-item"><img src="${item.image}" alt="${item.name}"><div><h3>${item.name}</h3><p>${item.quantity} × ${formatPrice(item.price)}</p></div></div>`).join('');
+  const cartItems = document.querySelector('.cart-items');
+  cartItems.replaceChildren();
+  cart.forEach(item => {
+    const cartItem = document.createElement('div');
+    cartItem.className = 'cart-item';
+    const image = document.createElement('img');
+    image.src = item.image;
+    image.alt = item.name;
+    const details = document.createElement('div');
+    const name = document.createElement('h3');
+    name.textContent = item.name;
+    const quantity = document.createElement('p');
+    quantity.textContent = `${item.quantity} × ${formatPrice(item.price)}`;
+    details.append(name, quantity);
+    cartItem.append(image, details);
+    cartItems.append(cartItem);
+  });
 }
 
 document.addEventListener('click', event => {
