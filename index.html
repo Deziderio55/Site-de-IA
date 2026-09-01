@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="NOVA: calçados que acompanham o seu ritmo." />
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; img-src 'self' https://images.unsplash.com data:; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com; script-src 'self'; connect-src 'none'; base-uri 'self'; form-action 'self'" />
+  <title>NOVA — Calçados para ir além</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <div class="topbar">Frete grátis nas compras acima de R$ 299 <span>•</span> Até 6x sem juros</div>
+
+  <header class="site-header">
+    <a class="brand" href="#inicio" aria-label="NOVA início">N<span>O</span>VA</a>
+    <nav class="main-nav" aria-label="Navegação principal">
+      <a href="#colecao">Coleção</a>
+      <a href="#mais-vendidos">Mais vendidos</a>
+      <a href="#sobre">A marca</a>
+    </nav>
+    <div class="header-actions">
+      <button class="icon-button search-toggle" aria-label="Abrir busca">⌕</button>
+      <button class="icon-button cart-toggle" aria-label="Abrir carrinho">▱ <b class="cart-count">0</b></button>
+    </div>
+  </header>
+
+  <main>
+    <section class="hero" id="inicio">
+      <div class="hero-copy">
+        <p class="eyebrow">NOVA / DROP 03</p>
+        <h1>Seu ritmo.<br /><em>Seu caminho.</em></h1>
+        <p class="hero-text">Calçados feitos para acompanhar cada movimento, do primeiro passo ao último destino.</p>
+        <a class="primary-button" href="#colecao">Explorar coleção <span>↗</span></a>
+      </div>
+      <div class="hero-image-wrap">
+        <img class="hero-image" src="https://images.unsplash.com/photo-1542291026-7eec264c27ff?auto=format&fit=crop&w=1400&q=85" alt="Tênis NOVA vermelho em destaque" />
+        <div class="hero-sticker">FEITO<br /><strong>PARA<br />IR</strong><br />ALÉM</div>
+        <p class="image-caption">01 / 04 &nbsp; NOVA RUNNER</p>
+      </div>
+    </section>
+
+    <section class="ticker" aria-label="Diferenciais NOVA">
+      <div>CONFORTO SEM DESCULPAS</div><span>✳</span><div>DESIGN COM PROPÓSITO</div><span>✳</span><div>FEITO PARA IR ALÉM</div><span>✳</span><div>CONFORTO SEM DESCULPAS</div>
+    </section>
+
+    <section class="collection section-shell" id="colecao">
+      <div class="section-heading">
+        <div><p class="eyebrow">ESCOLHA SEU PRÓXIMO PASSO</p><h2>Encontre o seu par.</h2></div>
+        <p class="section-note">Design pensado para a cidade,<br />performance pronta para qualquer lugar.</p>
+      </div>
+      <div class="shop-toolbar">
+        <div class="filters" role="group" aria-label="Filtrar produtos">
+          <button class="filter active" data-filter="todos">Todos</button>
+          <button class="filter" data-filter="corrida">Corrida</button>
+          <button class="filter" data-filter="casual">Casual</button>
+          <button class="filter" data-filter="trilha">Trilha</button>
+        </div>
+        <label class="sort-label">Ordenar por <select id="sort-products"><option value="featured">Destaques</option><option value="low">Menor preço</option><option value="high">Maior preço</option></select></label>
+      </div>
+      <div class="product-grid" id="product-grid"></div>
+    </section>
+
+    <section class="editorial section-shell" id="sobre">
+      <div class="editorial-image"><img src="https://images.unsplash.com/photo-1520256862855-398228c41684?auto=format&fit=crop&w=1200&q=85" alt="Tênis NOVA em ambiente natural" /></div>
+      <div class="editorial-copy"><p class="eyebrow">A MARCA</p><h2>Menos ruído.<br /><em>Mais movimento.</em></h2><p>A NOVA nasceu para tirar o excesso do caminho. Criamos peças versáteis, honestas e confortáveis para quem encontra liberdade em estar sempre em movimento.</p><a class="text-link" href="#colecao">Conheça a NOVA <span>↗</span></a></div>
+    </section>
+
+    <section class="newsletter section-shell"><div><p class="eyebrow">NOVA NEWS</p><h2>Chegue primeiro.</h2></div><form id="newsletter-form"><label for="email">Receba lançamentos e condições especiais.</label><div class="email-row"><input id="email" type="email" placeholder="seu melhor e-mail" required /><button class="primary-button" type="submit">Inscrever <span>↗</span></button></div><small id="newsletter-message" aria-live="polite"></small></form></section>
+  </main>
+
+  <footer class="site-footer"><a class="brand" href="#inicio">N<span>O</span>VA</a><p>Calçados para ir além.</p><div><a href="mailto:mateusdeziderio28@gmail.com">mateusdeziderio28@gmail.com</a><a href="https://github.com/Deziderio55" target="_blank" rel="noopener noreferrer">GitHub</a><a href="#colecao">Trocas e devoluções</a></div><small>© 2024 NOVA. Todos os direitos reservados.</small></footer>
+
+  <aside class="cart-drawer" aria-label="Carrinho de compras" aria-hidden="true"><div class="drawer-head"><h2>Seu carrinho <span class="drawer-count">(0)</span></h2><button class="close-cart" aria-label="Fechar carrinho">×</button></div><div class="cart-items"></div><div class="cart-empty">Seu carrinho está esperando por um novo par.</div><div class="cart-footer"><div><span>Subtotal</span><strong class="cart-total">R$ 0,00</strong></div><button class="checkout-button">Finalizar compra <span>↗</span></button></div></aside><div class="overlay"></div>
+  <div class="search-panel"><div class="search-inner"><input id="search-input" type="search" placeholder="Buscar por nome ou categoria..." /><button class="close-search" aria-label="Fechar busca">×</button></div></div>
+  <script src="script.js"></script>
+</body>
+</html>
